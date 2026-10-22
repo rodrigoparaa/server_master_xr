@@ -138,9 +138,9 @@ Notas de implementación:
 - *Terminado cuando:* desde datos móviles se guarda una foto en el XR y se abre desde Archivos. ✅ *22/10/2026: probado en el 17 Pro con Tailscale y datos móviles; IA, Face ID (abrir/purgar) y Compartir también. Arreglos por el camino: permiso de red local, errores en español y fijado TLS en retos de tarea (streaming SSE).*
 
 **F5 — Extras**
-- [ ] Indexar PDF/texto subidos para la IA (extracción de texto en el cliente).
-- [ ] «Destrucción total» (borrar la llave del Secure Enclave, con doble confirmación firmada).
-- [ ] Avisos al 17 Pro (XR desconectado, temperatura, purga).
+- [x] Indexar PDF/texto subidos para la IA (extracción de texto en el cliente). *Hecho 2026-10-22: nota cifrada `file-<id>.aegis` enviada con la subida (PDFKit en Swift, `aegis_pdftext` en el CLI); se retira al borrar o sustituir. Probado en el XR: la IA respondió con un dato de un PDF citándolo.*
+- [x] «Destrucción total» (borrar la llave del Secure Enclave, con doble confirmación firmada). *`/v1/destroy/arm` + `/v1/destroy/confirm` (reto de 60 s + frase «DESTRUIR TODO»), CLI `destroy` y app del 17 Pro. Probado solo en `FileVaultRunner` (irreversible). Salvedad: una copia de seguridad previa del XR conserva la referencia de la llave.*
+- [x] Avisos al 17 Pro (XR desconectado, temperatura, purga). *Notificaciones locales (sin servidor push): app abierta cada 5 s y BGAppRefresh cuando iOS lo permite. Probado: llega el aviso de purga.*
 
 ### 4.8 Riesgos y límites asumidos
 
