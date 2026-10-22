@@ -132,10 +132,10 @@ Notas de implementación:
 - *Terminado cuando:* el XR se monta en Finder y se abre un archivo con doble clic. ✅ *22/10/2026: doble clic abre documentos e imágenes (5–6 s la primera vez, luego desde caché); PDF real idéntico.*
 
 **F4 — iPhone 17 Pro**
-- [ ] App cliente: emparejamiento, estado, consultas a la IA, archivos.
-- [ ] Extensión File Provider (Archivos) y «Compartir → Guardar en Aegis».
-- [ ] Firma con Face ID (Secure Enclave del 17 Pro).
-- *Terminado cuando:* desde datos móviles se guarda una foto en el XR y se abre desde Archivos.
+- [x] App cliente: emparejamiento, estado, consultas a la IA, archivos. *Hecho 2026-10-22 (`PhoneApp/`, XcodeGen; núcleo común con el Mac en `ClientCore/`). Emparejamiento TOFU con el mismo código; clave propia en el Secure Enclave del 17 Pro.*
+- [x] Extensión File Provider (Archivos) y «Compartir → Guardar en Aegis». *Compartir guarda en la carpeta «Compartido».*
+- [x] Firma con Face ID (Secure Enclave del 17 Pro). *Abrir, purgar y borrar.*
+- *Terminado cuando:* desde datos móviles se guarda una foto en el XR y se abre desde Archivos. ✅ *22/10/2026: probado en el 17 Pro con Tailscale y datos móviles; IA, Face ID (abrir/purgar) y Compartir también. Arreglos por el camino: permiso de red local, errores en español y fijado TLS en retos de tarea (streaming SSE).*
 
 **F5 — Extras**
 - [ ] Indexar PDF/texto subidos para la IA (extracción de texto en el cliente).
