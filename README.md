@@ -3,6 +3,7 @@
 Plan maestro y seguimiento del **servidor de archivos privado sobre el iPhone XR** de [Aegis Hardware Enclave](https://github.com/rodrigoparaa/aegis-hardware-enclave).
 
 - **Plan completo:** [PLAN_MAESTRO.md](PLAN_MAESTRO.md): estado, principios, backlog, diseño del servidor (opción A: la llave la tiene el Secure Enclave del XR), API, formato en disco y fases F0–F5 con criterios de terminado.
+- **Guía sencilla:** [README_SENCILLO.html](README_SENCILLO.html): explicación visual e interactiva para quien no sabe de informática (descárgala y ábrela en el navegador).
 - **Código:** se implementa en el repositorio `aegis-hardware-enclave` (módulo `Sources/FileVault`, rutas `/v1/files/*`, clientes en `CompanionTools/` app de Mac en `MacApp/` y app del iPhone 17 Pro en `PhoneApp/`).
 
 ## Estado
