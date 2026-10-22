@@ -109,9 +109,9 @@ Notas de implementación:
 ### 4.7 Fases, tareas y criterios de terminado
 
 **F0 — Base del servidor (prerrequisito)**
-- [ ] Lectura de cuerpo en streaming en `LocalHTTPServer` (sin cargar >1 trozo en RAM).
-- [ ] Respuestas en streaming genéricas (ya existe para SSE; generalizar).
-- *Terminado cuando:* un `PUT` de 64 MiB no sube la huella de memoria más de ~10 MiB.
+- [x] Lectura de cuerpo en streaming en `LocalHTTPServer` (sin cargar >1 trozo en RAM). *Hecho 2026-10-22: `AegisRequestBody` (trozos ≤256 KiB), `registerStreamingRoute`, 401/507 antes de leer el cuerpo, 413 (>16 MiB en rutas en RAM), 411, 431.*
+- [x] Respuestas en streaming genéricas (ya existe para SSE; generalizar). *Hecho: `AegisStreamingResponse` + envío con contrapresión, también en SSE.*
+- *Terminado cuando:* un `PUT` de 64 MiB no sube la huella de memoria más de ~10 MiB. ✅ *Prueba en Mac por TCP real: +0,3 MiB. En el XR, estado y sincronización siguen funcionando por HTTPS; la subida grande en el XR se probará con la primera ruta real (F1).*
 
 **F1 — Núcleo de archivos en el XR**
 - [ ] `FileVaultStore` (Sources/FileVault): formato de bultos por trozos, índice cifrado, escritura atómica.
