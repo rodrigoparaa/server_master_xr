@@ -18,6 +18,10 @@ Guía viva para continuar el proyecto. Recoge **qué existe**, **qué principios
 | Protección de memoria (margen real, 507, descarga del modelo) | ✅ (avisos de iOS sin probar en real) |
 | App iPhone «papel de seguridad», barra de menús macOS, centinela | ✅ |
 | Repositorio único (`iOSApp/` incluido), licencia MIT | ✅ |
+| Servidor de archivos cifrados en el XR (FileVault, `/v1/files`) | ✅ 50 MB en ~9 s, por trozos |
+| Finder y app Archivos (File Provider), CLI y pestaña en la barra de menús | ✅ |
+| App del iPhone 17 Pro (Face ID, IA, archivos, Compartir, avisos) | ✅ probada con datos móviles |
+| Destrucción total con doble firma; texto de documentos para la IA | ✅ (destrucción solo en pruebas) |
 
 ## 2. Principios que no se negocian
 
@@ -33,13 +37,13 @@ Guía viva para continuar el proyecto. Recoge **qué existe**, **qué principios
 
 | # | Tarea | Por qué | Estado |
 |---|---|---|---|
-| F | **Servidor de archivos** (sección 4) | Usar el XR como almacén privado accesible desde Mac y iPhone 17 Pro | ⬜ Próximo |
+| F | **Servidor de archivos** (sección 4) | Usar el XR como almacén privado accesible desde Mac y iPhone 17 Pro | ✅ F0–F5 |
 | 5 | Pruebas de calidad de la IA: 20–30 preguntas con respuesta esperada y un script que puntúe | Medir cualquier cambio de búsqueda o modelo | ⬜ |
 | 4 | Reordenar fragmentos con un modelo pequeño de embeddings (~30 MB) | Acertar en preguntas generales | ⬜ (depende de 5) |
 | 6 | Caché de respuestas repetidas; probar 1.5B en Q4_0 | Velocidad | ⬜ (depende de 5) |
 | 9 | Script que sincronice los `.md` de los repos a Athena y Cyber 12 | Las copias se desactualizan | ⬜ |
-| A | App del iPhone 17 Pro (cliente) | Necesaria para la fase F4 | ⬜ |
-| — | Probar el acceso desde fuera de casa (datos móviles + Tailscale) | Validar disponibilidad real | ⬜ |
+| A | App del iPhone 17 Pro (cliente) | Necesaria para la fase F4 | ✅ |
+| — | Probar el acceso desde fuera de casa (datos móviles + Tailscale) | Validar disponibilidad real | ✅ (17 Pro) |
 
 ---
 
@@ -156,7 +160,7 @@ Notas de implementación:
 1. `git pull` en `~/Desktop/EnclavR` y lee este plan y `.claude/napkin.md`.
 2. Comprueba el XR: `aegis-status` (debe responder por HTTPS).
 3. Compila y prueba en el Mac: `swift build` y los runners de `Tests/` (`.build/debug/*Runner`).
-4. App del iPhone: `iOSApp/EnclavR.xcodeproj` (Team ID en `iOSApp/Signing.local.xcconfig`).
+4. Apps: XR en `iOSApp/EnclavR.xcodeproj`; Mac con `scripts/build_menubar.sh` (instala en `~/Applications`); iPhone cliente con `cd PhoneApp && xcodegen generate`. Team ID en `iOSApp/Signing.local.xcconfig`. Pruebas de archivos: `.build/debug/FileVaultRunner`.
 5. Antes de subir a GitHub: revisa que el diff no contenga IP reales, UDID, Team ID, rutas `/Users/`, tokens ni claves.
 6. Al cerrar una fase: marca casillas, actualiza la sección 1 y documenta mediciones en `docs/ARQUITECTURA.md`.
 
