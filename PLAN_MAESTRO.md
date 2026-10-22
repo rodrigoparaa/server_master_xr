@@ -127,8 +127,9 @@ Notas de implementación:
 - *Terminado cuando:* se sube una carpeta de fotos desde la barra de menús y se descarga desde el CLI. ✅ *22/10/2026: carpeta «Pruebas Gráficas» subida desde la barra y bajada con `files get --folder`. Arreglado de paso: el XR cortaba los últimos KB de algunas descargas TLS (24/24 correctas tras el arreglo).*
 
 **F3 — Finder**
-- [ ] Proxy local del Mac con fijado TLS + WebDAV de solo lectura; después escritura.
-- *Terminado cuando:* el XR se monta en Finder y se abre un archivo con doble clic.
+- [x] ~~Proxy local del Mac con fijado TLS + WebDAV de solo lectura; después escritura.~~ *Hecho (`files mount`), pero macOS 26.6 tarda ~90 s en montar cualquier WebDAV (fallo del sistema, comprobado también con wsgidav): queda como alternativa.*
+- [x] Extensión **File Provider** (como iCloud Drive): «Aegis XR» en la barra lateral de Finder, sin montar discos. *Hecho 2026-10-22 (`MacApp/`, XcodeGen): descarga al abrir con SHA-256, subida cifrada en el Mac, renombrar/mover, sustituir oculta la versión anterior (`supersedes`, id estable `lineage`), borrar con un Touch ID, cambios del XR en ~20 s. Se activa una vez en Ajustes → Ítems de inicio y extensiones. Limitación aceptada: Finder borra antes de pedir Touch ID (avisa de que es permanente); si se cancela, macOS vuelve a pedirlo hasta confirmar.*
+- *Terminado cuando:* el XR se monta en Finder y se abre un archivo con doble clic. ✅ *22/10/2026: doble clic abre documentos e imágenes (5–6 s la primera vez, luego desde caché); PDF real idéntico.*
 
 **F4 — iPhone 17 Pro**
 - [ ] App cliente: emparejamiento, estado, consultas a la IA, archivos.
