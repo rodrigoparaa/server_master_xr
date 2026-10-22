@@ -122,9 +122,9 @@ Notas de implementación:
 - *Terminado cuando:* todas las pruebas pasan y en el XR real se sube y baja un PDF de 50 MB idéntico (SHA-256). ✅ *22/10/2026: `FileVaultRunner` 8/8. En el XR: subida 50 MB en 9,0 s (5,5 MB/s), bajada en 9,6 s (5,2 MB/s), SHA-256 idéntico, RAM estable (~192→195 MiB).*
 
 **F2 — Mac (CLI + barra de menús)**
-- [ ] `files put/get/ls/rm/mv` en el CLI con barra de progreso y reanudación.
-- [ ] Pestaña «Archivos» en la barra de menús (arrastrar/soltar, miniaturas generadas en el Mac).
-- *Terminado cuando:* se sube una carpeta de fotos desde la barra de menús y se descarga desde el CLI.
+- [x] `files put/get/ls/rm/mv` en el CLI con barra de progreso y reanudación. *Hecho 2026-10-22 (`CompanionTools/aegis_files.py`): subida y bajada reanudables, SHA-256 verificado, miniaturas con QuickLook, clave pública del XR fijada en el primer uso, nombres en NFC.*
+- [x] Pestaña «Archivos» en la barra de menús (arrastrar/soltar, miniaturas generadas en el Mac). *Carpetas navegables, «Subir…», ventana flotante para arrastrar (el panel se cierra al hacer clic fuera), descargar archivo o carpeta, borrar con Touch ID (carpeta: un solo Touch ID). La subida usa el CLI.*
+- *Terminado cuando:* se sube una carpeta de fotos desde la barra de menús y se descarga desde el CLI. ✅ *22/10/2026: carpeta «Pruebas Gráficas» subida desde la barra y bajada con `files get --folder`. Arreglado de paso: el XR cortaba los últimos KB de algunas descargas TLS (24/24 correctas tras el arreglo).*
 
 **F3 — Finder**
 - [ ] Proxy local del Mac con fijado TLS + WebDAV de solo lectura; después escritura.
