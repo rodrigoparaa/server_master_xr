@@ -114,12 +114,12 @@ Notas de implementación:
 - *Terminado cuando:* un `PUT` de 64 MiB no sube la huella de memoria más de ~10 MiB. ✅ *Prueba en Mac por TCP real: +0,3 MiB. En el XR, estado y sincronización siguen funcionando por HTTPS; la subida grande en el XR se probará con la primera ruta real (F1).*
 
 **F1 — Núcleo de archivos en el XR**
-- [ ] `FileVaultStore` (Sources/FileVault): formato de bultos por trozos, índice cifrado, escritura atómica.
-- [ ] Endpoints de 4.5 (subida reanudable, lista, descarga con Range, borrar firmado, usage).
-- [ ] Límite de espacio (507) y limpieza de subidas abandonadas.
-- [ ] Purga: borra el índice en RAM; no toca bultos.
+- [x] `FileVaultStore` (Sources/FileVault): formato de bultos por trozos, índice cifrado, escritura atómica. *Hecho 2026-10-22. Cambio respecto a §4.4: en vez de un `index.aegis` único, cada archivo tiene su sobre `blobs/<id>.meta` (ECIES); así subir no exige descifrar nada y no hay un índice que reescribir. Protección de archivos «hasta el primer desbloqueo» (los bultos ya van cifrados y así se sirve con la pantalla bloqueada).*
+- [x] Endpoints de 4.5 (subida reanudable, lista, descarga con Range, borrar firmado, usage). *Añadido `GET /v1/files/uploads/<id>` → trozos que faltan. La miniatura responde 404 hasta F2.*
+- [x] Límite de espacio (507) y limpieza de subidas abandonadas. *Reserva fija de 1 GiB.*
+- [x] Purga: borra el índice en RAM; no toca bultos.
 - *Pruebas:* runner `FileVaultRunner` con subida/descarga redonda, trozo alterado (rechazado), reordenado (rechazado), reanudación, Range, borrado sin firma (403), bóveda cerrada (423).
-- *Terminado cuando:* todas las pruebas pasan y en el XR real se sube y baja un PDF de 50 MB idéntico (SHA-256).
+- *Terminado cuando:* todas las pruebas pasan y en el XR real se sube y baja un PDF de 50 MB idéntico (SHA-256). ✅ *22/10/2026: `FileVaultRunner` 8/8. En el XR: subida 50 MB en 9,0 s (5,5 MB/s), bajada en 9,6 s (5,2 MB/s), SHA-256 idéntico, RAM estable (~192→195 MiB).*
 
 **F2 — Mac (CLI + barra de menús)**
 - [ ] `files put/get/ls/rm/mv` en el CLI con barra de progreso y reanudación.
